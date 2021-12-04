@@ -5,7 +5,7 @@ sys.path.append('../')
 from shared import load_inputs
 
 
-def task1(instructions):
+def task1(instructions: [str]) -> (int, int):
     horizontal, depth = 0, 0
     for instruction in instructions:
         match = re.match('forward (\d+)', instruction)
@@ -23,7 +23,7 @@ def task1(instructions):
     return horizontal, depth
 
 
-def task2(instructions):
+def task2(instructions: [str]) -> (int, int):
     horizontal, depth, aim = 0, 0, 0
     for instruction in instructions:
         match = re.match('forward (\d+)', instruction)

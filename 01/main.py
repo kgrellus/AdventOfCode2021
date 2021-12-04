@@ -4,7 +4,7 @@ sys.path.append('../')
 from shared import load_inputs
 
 
-def task1(task_input):
+def task1(task_input: [str]) -> int:
     depths = [int(line) for line in task_input]
     increases = 0
     for i in range(1, len(depths)):
@@ -13,7 +13,7 @@ def task1(task_input):
     return increases
 
 
-def task2(task_input):
+def task2(task_input: [str]) -> int:
     depths = [int(line) for line in task_input]
     increases = 0
     for i in range(0, len(depths) - 2):

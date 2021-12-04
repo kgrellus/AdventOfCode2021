@@ -2,7 +2,6 @@ import re
 import sys
 
 sys.path.append('../')
-print(sys.path)
 from shared import load_inputs
 
 
@@ -11,7 +10,7 @@ class Entry:
     marked: bool
     is_winning: bool
 
-    def __init__(self, value):
+    def __init__(self, value: int):
         self.value = value
         self.marked = False
         self.is_winning = False
@@ -34,9 +33,8 @@ class Board:
         self.board = []
         for row in string_rows:
             self.board.append([Entry(int(char)) for char in re.split('\s+', row)])
-        return
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         representation = '\n'
         for row in self.board:
             for entry in row:
@@ -46,13 +44,13 @@ class Board:
             representation += '\n'
         return representation
 
-    def mark(self, value):
+    def mark(self, value: int):
         for row in self.board:
             for entry in row:
                 if entry.value == value:
                     entry.mark()
 
-    def finished(self):
+    def finished(self) -> bool:
         # if all([self.board[i][i].marked for i in range(0, len(self.board))]):
         #     return True
         # if all([self.board[len(self.board) - 1 - i][i].marked for i in range(0, len(self.board))]):
@@ -69,7 +67,7 @@ class Board:
 
         return False
 
-    def unmarked_sum(self):
+    def unmarked_sum(self) -> int:
         return sum([sum([entry.value for entry in row if not entry.marked]) for row in self.board])
 
 
@@ -89,9 +87,9 @@ def task1(task_input: [str]) -> (int, int):
         for board in boards:
             board.mark(drawn_number)
             if board.finished():
-                print(board)
+                print('first winning board:', board)
                 return board.unmarked_sum(), drawn_number
-    raise ValueError
+    raise ValueError('no board has won, check inputs!')
 
 
 def task2(task_input: [str]) -> (int, int):
@@ -110,16 +108,17 @@ def task2(task_input: [str]) -> (int, int):
                     winning_board = board
             i += 1
         if winning_board:
-            print(winning_board)
+            print('last winning board:', winning_board)
             return winning_board.unmarked_sum(), drawn_number
-    raise ValueError
+    raise ValueError('no board has won, check inputs!')
 
 
 if __name__ == '__main__':
     example_input, puzzle_input = load_inputs(__file__)
     task1_sum_unmarked_numbers, task1_winning_number = task1(puzzle_input)
+    task2_sum_unmarked_numbers, task2_winning_number = task2(puzzle_input)
     print(
         f'task 1: sum of unmarked numbers:{task1_sum_unmarked_numbers}, winning_number:{task1_winning_number}, solution:{task1_sum_unmarked_numbers * task1_winning_number}')
-    task2_sum_unmarked_numbers, task2_winning_number = task2(puzzle_input)
+    print()
     print(
         f'task 2: sum of unmarked numbers:{task2_sum_unmarked_numbers}, winning_number:{task2_winning_number}, solution:{task2_sum_unmarked_numbers * task2_winning_number}')

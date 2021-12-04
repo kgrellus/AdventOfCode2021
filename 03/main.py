@@ -1,5 +1,7 @@
-from shared import load_inputs
+import sys
 
+sys.path.append('../')
+from shared import load_inputs
 
 def binary_string_to_int(binary_string: str) -> int:
     int_value = 0

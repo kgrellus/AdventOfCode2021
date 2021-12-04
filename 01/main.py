@@ -1,3 +1,6 @@
+import sys
+
+sys.path.append('../')
 from shared import load_inputs
 
 

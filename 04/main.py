@@ -106,6 +106,7 @@ def task2(task_input: [str]) -> (int, int):
                     continue
                 else:
                     winning_board = board
+                    break
             i += 1
         if winning_board:
             print('last winning board:', winning_board)

@@ -60,4 +60,4 @@ if __name__ == '__main__':
     task1, low_points = task1(map_)
     task2 = task2(map_, low_points)
     print(f'task 1: risk = {task1}')
-    print(f'task 2: 3 biggest basin_sizes multiplied: {task2}')
+    print(f'task 2: 3 biggest basin sizes multiplied: {task2}')

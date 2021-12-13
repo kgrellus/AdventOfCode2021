@@ -1,5 +1,6 @@
 # Custom ignored files
 */input
+!template/input
 
 # Editors and more
 .idea

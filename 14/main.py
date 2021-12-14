@@ -64,40 +64,20 @@ class Polymer:
         self.atom_counts[atom] = self.atom_counts[atom] + 1 if atom in self.atom_counts else 1
 
     def finish(self):
-        tic = time.perf_counter()
         self.insertions.sort(key=lambda x: x[0], reverse=True)
-        toc = time.perf_counter()
-        print(f"Sorting took {toc - tic:0.4f} seconds")
-        tic = time.perf_counter()
         for index, atom in self.insertions:
             self.atoms.insert(index, atom)
-        toc = time.perf_counter()
-        print(f"Inserting took {toc - tic:0.4f} seconds")
-        self.insertions = []
-
-    def finish2(self):
-        tic = time.perf_counter()
-        toc = time.perf_counter()
-        print(f"Sorting took {toc - tic:0.4f} seconds")
-        tic = time.perf_counter()
-        for atom in self.marked_atoms:
-            atom.is
-        toc = time.perf_counter()
-        print(f"Inserting took {toc - tic:0.4f} seconds")
         self.insertions = []
 
 
 def task1(task_input: [str]) -> int:
     polymer = Polymer(task_input[0])
     changes = task_input[2:]
-    for i in range(40):
-        print("index:", i)
+    for _ in range(10):
         for change in changes:
             sequence, atom = re.match('(\w+) -> (\w)', change).groups()
             polymer.insert(sequence, atom)
         polymer.finish()
-        # print(polymer)
-    print(polymer.atom_counts)
     min_atoms, max_atoms = min(polymer.atom_counts.values()), max(polymer.atom_counts.values())
     return max_atoms - min_atoms
 

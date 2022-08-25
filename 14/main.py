@@ -31,13 +31,11 @@ class Polymer:
     atoms: [Atom]
     atom_counts: dict
     insertions: []
-    unfinished_atoms: {Atom}
 
     def __init__(self, polymer_str):
         self.atoms = [Atom(char) for char in polymer_str]
         self.insertions = []
         self.atom_counts = {}
-        self.unfinished_atoms = set()
         for atom in self.atoms:
             self.update_atom_count(atom.char)
 
